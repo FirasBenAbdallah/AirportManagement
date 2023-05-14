@@ -5,7 +5,7 @@ namespace AM.ApplicationCore.Domain
 {
     public class Staff : Passenger
     {
-        public DateTime EmploymentDate { get; set; }
+        public DateTime? EmploymentDate { get; set; }
         public string? Function { get; set; }
         [DataType(DataType.Currency)]
         public int Salary { get; set; }

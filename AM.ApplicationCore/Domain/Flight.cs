@@ -16,12 +16,13 @@ namespace AM.ApplicationCore.Domain
         public int FlightId { get; set; }
         public DateTime EffectiveArrival { get; set; }
         public int EstimateDuration { get; set; }
+
         [ForeignKey("MyPlane")]
         public int PlaneFk { get; set; }
-        public Plane? MyPlane { get; set; }
-        public string Airline { get; set; }
-        public  ICollection<Passenger>? Passengers { get; set; }
-        public ICollection<Ticket>? Tickets { get; set; }
+        public virtual Plane? MyPlane { get; set; }
+        public string? Airline { get; set; }
+        //public  ICollection<Passenger>? Passengers { get; set; }
+        public virtual ICollection<Ticket>? Tickets { get; set; }
         public override string ToString()
         {
             return "\n FlightDate : " + FlightDate + "\n Destination : " + Destination + "\n EffectiveArrival : " + EffectiveArrival 

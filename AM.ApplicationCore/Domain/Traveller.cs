@@ -15,5 +15,10 @@ namespace AM.ApplicationCore.Domain
             base.PassengerType();
             Console.WriteLine("I'm a traveller");
         }
+
+        public override string ToString()
+        {
+            return $"{base.ToString()}[Traveller]: Nationality: {Nationality}";
+        }
     }
 }

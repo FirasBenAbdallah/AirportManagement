@@ -8,6 +8,7 @@ namespace AM.INfrastructure
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            optionsBuilder.UseLazyLoadingProxies();
             optionsBuilder.UseSqlServer(
                 @"Data Source=(localdb)\mssqllocaldb;
                 Initial Catalog=FirasBenAbdallahDB;
@@ -30,8 +31,6 @@ namespace AM.INfrastructure
                         .ToTable("Staff");
             modelBuilder.Entity<Traveller>()
                         .ToTable("Travellers");
-            
-
         }
         protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder) 
         {

@@ -1,11 +1,6 @@
 ﻿using AM.ApplicationCore.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AM.INfrastructure.Configuration
 {
@@ -14,9 +9,11 @@ namespace AM.INfrastructure.Configuration
         public void Configure(EntityTypeBuilder<Ticket> builder)
         {
             builder.HasKey(t => new { t.PassengerFK, t.FlightFK });
+
             builder.HasOne(t => t.Flight)
                 .WithMany(f => f.Tickets)
                 .HasForeignKey(t => t.FlightFK);
+            
             builder.HasOne(t => t.Passenger)
                 .WithMany(f => f.Tickets)
                 .HasForeignKey(t => t.PassengerFK);

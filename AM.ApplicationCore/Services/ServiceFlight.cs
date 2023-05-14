@@ -135,7 +135,7 @@ namespace AM.ApplicationCore.Services
             return q.ToList();
         }
 
-        public List<Passenger> SeniorTravvellers(Flight flight)
+        /*public List<Passenger> SeniorTravvellers(Flight flight)
         {
             IEnumerable<Passenger> q = (
                     //from passenger in flight.Passengers.OfType<Traveller>()
@@ -147,7 +147,7 @@ namespace AM.ApplicationCore.Services
                 ).Take(3);
 
             return q.ToList();
-        }
+        }*/
 
         public void DestinationGroupedFlights()
         {

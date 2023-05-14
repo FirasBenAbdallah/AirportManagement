@@ -1,21 +1,10 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-using AM.ApplicationCore;
 using AM.ApplicationCore.Domain;
 using AM.ApplicationCore.Services;
-using System.ComponentModel;
-using System.Drawing;
-using System.Globalization;
-using System.Net.Sockets;
+using AM.INfrastructure;
 
-Console.WriteLine("Hello, World!");
-//Plane Plane1 = new Plane();
-//Plane1.Capacity = 300;
-//Plane1.ManifactureDate = new DateTime(2022, 09, 20);
-//Console.WriteLine(Plane1.ToString());
-
-//Plane Plane2 = new Plane(PlaneType.Boing, 500, DateTime.Now);
-//Console.WriteLine(Plane2.ToString());
+/*Console.WriteLine("Hello, World!");
 
 Plane Plane3 = new Plane
 {
@@ -25,16 +14,14 @@ Plane Plane3 = new Plane
 Console.WriteLine(Plane3.ToString());
 Passenger p1 = new Passenger
 {
-    FirstName = "Firas",
-    LastName = "Abdallah",
-    EmailAdress = "azerty.er@esprit.tn"
+    FullName = new FullName ("Firas", "Ben Abdallah"),
+    EmailAddress = "azerty.er@esprit.tn"
 };
 p1.PassengerType();
 Console.WriteLine(p1.CheckProfile("Firas","Abdallah","az@esprit.tn"));
 Staff s1 = new Staff
 {
-    FirstName = "Firas",
-    LastName = "Abdallah",
+    FullName = new FullName ("Firas","Abdallah"),
 };
 s1.PassengerType();
 
@@ -48,24 +35,17 @@ Plane p3 = new Plane
 
 Passenger pass = new Passenger
 {
-    FirstName = "passenger1",
-    LastName = "passenger1",
+    FullName = new FullName("passenger1","passenger1"),
     BirthDate = new DateTime(1970, 1, 10),
-    EmailAdress = "passenger1.passenger1@example.com",
+    EmailAddress = "passenger1.passenger1@example.com",
     PssportNumber = "125465",
     TelNumber = "12345678"
 };
-
-
 
 ServiceFlight sf = new ServiceFlight();
 sf.Flights = TestData.listFlights;
 
 Console.WriteLine(sf.ToString());
-
-
-
-
 
 Staff s = new Staff();
 
@@ -85,8 +65,7 @@ t.PassengerType();
 
 Console.WriteLine("-----------------\n");
 
-Console.WriteLine($"The profile of passanger {pass.FirstName} is: {(pass.CheckProfile("Passenger1", "Passenger1") ? "verified" : "unverified")}\n");
-
+Console.WriteLine($"The profile of passanger {pass.FullName.FirstName} is: {(pass.CheckProfile("Passenger1", "Passenger1") ? "verified" : "unverified")}\n");
 
 sf.Flights = TestData.listFlights;
 
@@ -128,4 +107,36 @@ Console.WriteLine($"Before toUpper:\n{pass}");
 
 pass.UpperFullName();
 
-Console.WriteLine($"After toUpper:\n{pass}");
+Console.WriteLine($"After toUpper:\n{pass}");*/
+Plane plane1 = new Plane
+{
+    Planetype = PlaneType.Airbus,
+    Capacity = 150,
+    ManifactureDate = new DateTime(2015, 02, 03)
+};
+
+Flight f1 = new Flight()
+{
+    Departure = "Tunis",
+    Airline = "Tunisair",
+    FlightDate = new DateTime(2022, 02, 01, 21, 10, 10),
+    Destination = "Paris",
+    EffectiveArrival = new DateTime(2022, 02, 01, 23, 10, 10),
+    EstimateDuration = 103,
+    MyPlane = plane1
+};
+
+AMContext contexte = new AMContext();
+
+contexte.Flights.Add(f1);
+contexte.SaveChanges();
+Console.WriteLine(contexte.Flights.First().MyPlane.Capacity);
+
+
+//Plane Plane1 = new Plane();
+//Plane1.Capacity = 300;
+//Plane1.ManifactureDate = new DateTime(2022, 09, 20);
+//Console.WriteLine(Plane1.ToString());
+
+//Plane Plane2 = new Plane(PlaneType.Boing, 500, DateTime.Now);
+//Console.WriteLine(Plane2.ToString());

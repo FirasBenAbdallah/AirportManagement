@@ -4,9 +4,7 @@ namespace AM.ApplicationCore.Domain
 {
     public class FullName
     {
-        [
-            MinLength(3, ErrorMessage = "Longeure minimale 3")
-        ]
+        [MinLength(3, ErrorMessage = "Longeure minimale 3")]
         public string FirstName { get; set; }
         public string LastName { get; set; }
 
