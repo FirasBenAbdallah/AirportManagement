@@ -40,7 +40,8 @@ s1.PassengerType();
 
 Plane p3 = new Plane
 {
-    PlaneType = PlaneType.Airbus,
+    PlaneId = 3,
+    Planetype = PlaneType.Airbus,
     Capacity = 200,
     ManifactureDate = DateTime.Now
 };
@@ -51,8 +52,8 @@ Passenger pass = new Passenger
     LastName = "passenger1",
     BirthDate = new DateTime(1970, 1, 10),
     EmailAdress = "passenger1.passenger1@example.com",
-    PssportNumber = 125465,
-    TelNumber = 12345678
+    PssportNumber = "125465",
+    TelNumber = "12345678"
 };
 
 

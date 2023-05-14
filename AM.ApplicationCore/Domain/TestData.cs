@@ -11,13 +11,15 @@ namespace AM.ApplicationCore.Domain
         //Plane
         public static Plane planeB = new Plane
         {
-            PlaneType = PlaneType.Boing,
+            PlaneId = 1,
+            Planetype = PlaneType.Boing,
             Capacity = 150,
             ManifactureDate = new DateTime(2015, 02, 03)
         };
         public static Plane planeA = new Plane
         {
-            PlaneType = PlaneType.Airbus,
+            PlaneId = 2,
+            Planetype = PlaneType.Airbus,
             Capacity = 250,
             ManifactureDate = new DateTime(2020, 11, 11)
         };
@@ -25,8 +27,7 @@ namespace AM.ApplicationCore.Domain
         //Staff
         public static Staff Staff1 = new Staff
         {
-            FirstName = "captain",
-            LastName = "captain",
+            FullName = { FirstName = "captain", LastName = "captain" },
             EmailAdress = "Captain.captain@gmail.com",
             BirthDate = new DateTime(1966,01,01),
             EmploymentDate = new DateTime(1999,01,01),
@@ -34,8 +35,7 @@ namespace AM.ApplicationCore.Domain
         };
         public static Staff Staff2 = new Staff
         {
-            FirstName = "hostess1",
-            LastName = "hostess1",
+            FullName = { FirstName = "hostess1", LastName = "hostess1"},
             EmailAdress = "Hostess1.hostess1@gmail.com",
             BirthDate = new DateTime(1995, 01, 01),
             EmploymentDate = new DateTime(2020, 01, 01),
@@ -43,8 +43,7 @@ namespace AM.ApplicationCore.Domain
         };
         public static Staff Staff3 = new Staff
         {
-            FirstName = "hostess2",
-            LastName = "hostess2",
+            FullName = { FirstName = "hostess2", LastName = "hostess2" },
             EmailAdress = "Hostess2.hostess2@gmail.com",
             BirthDate = new DateTime(1996, 01, 01),
             EmploymentDate = new DateTime(2020, 01, 01),

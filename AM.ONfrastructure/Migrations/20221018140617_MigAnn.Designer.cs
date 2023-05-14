@@ -4,6 +4,7 @@ using AM.INfrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AM.INfrastructure.Migrations
 {
     [DbContext(typeof(AMContext))]
-    partial class AMContextModelSnapshot : ModelSnapshot
+    [Migration("20221018140617_MigAnn")]
+    partial class MigAnn
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -41,13 +43,13 @@ namespace AM.INfrastructure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("EffectiveArrival")
-                        .HasColumnType("date");
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("EstimateDuration")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("FlightDate")
-                        .HasColumnType("date");
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("PlaneFk")
                         .HasColumnType("int");
@@ -66,7 +68,7 @@ namespace AM.INfrastructure.Migrations
                         .HasColumnType("nvarchar(7)");
 
                     b.Property<DateTime>("BirthDate")
-                        .HasColumnType("date");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Discriminator")
                         .IsRequired()
@@ -105,18 +107,17 @@ namespace AM.INfrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PlaneId"), 1L, 1);
 
                     b.Property<int>("Capacity")
-                        .HasColumnType("int")
-                        .HasColumnName("Planecapacity");
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("ManifactureDate")
-                        .HasColumnType("date");
+                        .HasColumnType("datetime2");
 
-                    b.Property<int>("Planetype")
+                    b.Property<int>("PlaneType")
                         .HasColumnType("int");
 
                     b.HasKey("PlaneId");
 
-                    b.ToTable("MyPlane", (string)null);
+                    b.ToTable("Planes");
                 });
 
             modelBuilder.Entity("FlightPassenger", b =>
@@ -131,7 +132,7 @@ namespace AM.INfrastructure.Migrations
 
                     b.HasIndex("PassengersPssportNumber");
 
-                    b.ToTable("Reservation", (string)null);
+                    b.ToTable("FlightPassenger");
                 });
 
             modelBuilder.Entity("AM.ApplicationCore.Staff", b =>
@@ -139,7 +140,7 @@ namespace AM.INfrastructure.Migrations
                     b.HasBaseType("AM.ApplicationCore.Passenger");
 
                     b.Property<DateTime>("EmploymentDate")
-                        .HasColumnType("date");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Function")
                         .HasColumnType("nvarchar(max)");
@@ -168,6 +169,7 @@ namespace AM.INfrastructure.Migrations
                     b.HasOne("AM.ApplicationCore.Plane", "MyPlane")
                         .WithMany("FlightsList")
                         .HasForeignKey("PlaneFk")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("MyPlane");

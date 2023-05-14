@@ -1,4 +1,5 @@
-﻿using AM.ApplicationCore;
+﻿using AM.ApplicationCore.Domain;
+using AM.INfrastructure.Configuration;
 using Microsoft.EntityFrameworkCore;
 
 namespace AM.INfrastructure
@@ -19,5 +20,22 @@ namespace AM.INfrastructure
         public DbSet<Passenger>? Passengers { get; set; }
         public DbSet<Staff>? Staff { get; set; }
         public DbSet<Traveller>? Travellers { get; set; }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfiguration(new PlaneConfiguration())
+                        .ApplyConfiguration(new FlightConfiguration())
+                        .ApplyConfiguration(new PassengerConfiguration())
+                        .ApplyConfiguration(new TicketConfiguration());
+            modelBuilder.Entity<Staff>()
+                        .ToTable("Staff");
+            modelBuilder.Entity<Traveller>()
+                        .ToTable("Travellers");
+            
+
+        }
+        protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder) 
+        {
+            configurationBuilder.Properties<DateTime>().HaveColumnType("date");
+        }
     }
 }

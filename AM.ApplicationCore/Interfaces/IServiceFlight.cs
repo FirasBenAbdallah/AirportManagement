@@ -1,4 +1,6 @@
-﻿namespace AM.ApplicationCore.Interfaces
+﻿using AM.ApplicationCore.Domain;
+
+namespace AM.ApplicationCore.Interfaces
 {
     public interface IServiceFlight
     {
