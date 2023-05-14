@@ -101,7 +101,8 @@ namespace AM.ApplicationCore.Services
                      //from flight in Flights
                      //where flight.FlightDate.Equals(startdate) && (flight.FlightDate - startdate).TotalDays < 7
                      //select flight
-                     Flights.Where (flight => flight.FlightDate.Equals(startdate) && (flight.FlightDate - startdate).TotalDays < 7)
+                     Flights.Where (
+                             flight => flight.FlightDate.Equals(startdate) && (flight.FlightDate - startdate).TotalDays < 7)
                             .Select (flight => flight)
                 ).Count();
 

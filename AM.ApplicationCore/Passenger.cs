@@ -8,11 +8,12 @@ namespace AM.ApplicationCore
 {
     public class Passenger
     {
+        public int Id { get; set; }
         public DateTime BirthDate { get; set; }
         public int PssportNumber { get; set; }
-        public string EmailAdress { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public string? EmailAdress { get; set; }
+        public string? FirstName { get; set; }
+        public string? LastName { get; set; }
         public int TelNumber { get; set; }
         public override string ToString()
         {
@@ -28,6 +29,7 @@ namespace AM.ApplicationCore
         //        LastName == lastname && 
         //        EmailAdress == email;
         //}
+        public ICollection<Flight>? Flights { get; set; }
         public bool CheckProfile(string firstname, string lastname, string? email=null)
         {
             if (email != null)
